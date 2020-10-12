@@ -5,7 +5,7 @@
   "main": "./src/main.js",
   "scripts": {
     "build": "webpack --mode production",
-    "watch": "webpack --watch --mode development",
+    "serve": "webpack-dev-server --mode development",
     "dev": "webpack --mode development",
     "debug": "webpack --debug"
   },
@@ -23,6 +23,7 @@
     "vue-router": "^3.4.5",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }

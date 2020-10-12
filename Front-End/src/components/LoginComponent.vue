@@ -35,7 +35,7 @@ export default {};
   h1 {
     margin: 0;
     font-size: 60px;
-    color: #e4e290;
+    color: #868527;
   }
 
   .login {
