@@ -15,12 +15,31 @@ const router = new VueRouter({
       component: HomeComponent,
     },
     {
-      path: "/login",
+      path: "/Login",
       component: LoginComponent,
     },
     {
-      path: "/test",
-      component: LoginComponent,
+      path: "/Register",
+      component: RegisterComponent,
+    },
+    {
+      path: "/User",
+      component: UserComponent,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: "/Search",
+      component: SearchComponent,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: "/Chat",
+      component: ChatListComponent,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: "/Chat/:id",
+      component: ChatComponent,
       meta: { requiresAuth: true }
     },
   ]
