@@ -3,8 +3,11 @@ import VueRouter from 'vue-router'
 
 import HomeComponent from './components/HomeComponent.vue'
 import LoginComponent from './components/LoginComponent.vue'
-
-
+import RegisterComponent from './components/RegisterComponent.vue'
+import UserComponent from './components/UserComponent.vue'
+import SearchComponent from './components/SearchComponent.vue'
+import ChatListComponent from './components/Chat/ChatListComponent.vue'
+import ChatComponent from './components/Chat/ChatComponent.vue'
 
 Vue.use(VueRouter)
 
@@ -52,9 +55,10 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to login page.
     // console.log(record);
     if (true) {
-      next({
-        path: '/',
-      })
+      next()
+      // next({
+      //   path: '/',
+      // })
     } else {
       next()
     }

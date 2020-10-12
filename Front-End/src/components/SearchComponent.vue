@@ -1,11 +1,16 @@
 <template>
   <div>
-    我是後台啦
+    Search
   </div>
 </template>
 
 <script>
 export default {
+    
   
 };
 </script>
+
+<style lang="scss">
+
+</style>

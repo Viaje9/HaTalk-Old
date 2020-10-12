@@ -4,8 +4,7 @@ import router from './route'
 
 // 全域component
 Vue.component('home-component', require('./components/HomeComponent.vue').default)
-Vue.component('header-component', require('./components/HeaderComponent.vue').default)
-Vue.component('test-component', require('./components/TestComponent.vue').default)
+
 
 
 new Vue({
