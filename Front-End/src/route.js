@@ -55,6 +55,11 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to login page.
     // console.log(record);
     if (true) {
+      /**
+       * 在login的時候會取得token存在cookie
+       * 如果沒有過期則導向畫面
+       * 如果過期則返回登入畫面
+       */
       next()
       // next({
       //   path: '/',

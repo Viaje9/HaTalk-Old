@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="outer">
+    <menu-component></menu-component>
     User
   </div>
 </template>
@@ -9,3 +10,9 @@ export default {
   
 };
 </script>
+
+<style lang="scss" scoped>
+.outer {
+  display: flex;
+}
+</style>

@@ -2,8 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './route'
 
+import MenuComponent from './components/MenuComponent.vue'
+
+
 // 全域component
-Vue.component('home-component', require('./components/HomeComponent.vue').default)
+Vue.component('menu-component', MenuComponent)
 
 
 

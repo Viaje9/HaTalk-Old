@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="outer">
+    <menu-component></menu-component>
     ChatList
   </div>
 </template>
@@ -11,6 +12,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+.outer {
+  display: flex;
+}
 </style>

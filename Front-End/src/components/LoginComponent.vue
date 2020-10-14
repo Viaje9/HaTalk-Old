@@ -1,5 +1,5 @@
 <template>
-  <div class="bg">
+  <div class="outer">
     <h1>HaTalk</h1>
     <form class="login">
       <div class="row">
@@ -11,8 +11,8 @@
         <input type="text" />
       </div>
       <div class="row">
-        <button>註冊</button>
-        <button>登入</button>
+        <router-link class="btn" to="/Register"> 註冊 </router-link>
+        <button class="btn">登入</button>
       </div>
     </form>
   </div>
@@ -23,7 +23,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.bg {
+.outer {
   width: 100%;
   height: 100vh;
   background-color: #627aa0;
@@ -39,30 +39,30 @@ export default {};
   }
 
   .login {
-    font-size: 35px;
+    font-size: 20px;
     color: #00ff14;
     padding-bottom: 8%;
 
     input {
-        height: 20px;
-        padding: 0;
+      height: 20px;
+      padding: 0;
     }
     .row {
-        display: flex;
-        align-items: center;
-        label {
-            padding: 0 3px 0 0;
-        }
+      padding: 7px;
+      display: flex;
+      align-items: center;
+      label {
+        padding: 0 3px 0 0;
+      }
     }
     .row:nth-child(3) {
-      padding: 16px 0;
       display: flex;
       justify-content: space-around;
-      button {
-        font-size: 28px;
+      .btn {
+        font-size: 20px;
         border-radius: 10px;
       }
-      button:focus {
+      .btn:focus {
         outline: unset;
       }
     }

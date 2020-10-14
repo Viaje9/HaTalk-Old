@@ -1,11 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const Router = express.Router();
 const IndexCtrl = require('../controller/FrontCtrl')
 
 
-router.get('/', IndexCtrl.index)
-router.get('/test', IndexCtrl.test)
-// router.get('/test1', IndexCtrl.test1)
+Router.get('/', IndexCtrl.index)
+Router.get('/test', IndexCtrl.test)
+Router.post('/Register', IndexCtrl.register)
 
 
-module.exports = router;
+
+module.exports = Router;

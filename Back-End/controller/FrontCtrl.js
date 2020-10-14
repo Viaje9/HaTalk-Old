@@ -31,7 +31,10 @@ class IndexCtrl {
         res.send('test')
     }
 
+    register(req, res) {
 
+        res.redirect('/#/')
+    }
 }
 
 module.exports = new IndexCtrl();
