@@ -1,7 +1,8 @@
 // const Chatroom = require('../model/User');
+const User = require('../model/User')
 
 class IndexCtrl {
-    
+
 
     index(req, res) {
         res.render('index')
@@ -28,6 +29,14 @@ class IndexCtrl {
             }
             console.log('test1');
         })
+        res.send('test')
+    }
+
+    async checkAccount(req, res) {
+        let a = await User.find({ account: req.query.account })
+        if (a) {
+            console.log(a);
+        }
         res.send('test')
     }
 

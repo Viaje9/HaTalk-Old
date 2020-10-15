@@ -1,14 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './route'
-
-import MenuComponent from './components/MenuComponent.vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 
 // 全域component
+import MenuComponent from './components/MenuComponent.vue'
 Vue.component('menu-component', MenuComponent)
 
-
+// 套件
+Vue.use(VueAxios, axios)
 
 new Vue({
     render: h => h(App),

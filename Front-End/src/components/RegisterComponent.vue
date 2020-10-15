@@ -1,6 +1,6 @@
 <template>
   <div class="outer">
-    <form @submit="checkForm" action="/Register" method="post">
+    <form @submit="checkForm">
       <div class="row">{{ errorPassword }}</div>
       <div class="row">
         <label for="name">暱稱</label>
@@ -17,6 +17,7 @@
       <div class="row">
         <label for="account">帳號</label>
         <input
+          @change="checkAccount"
           id="account"
           name="account"
           v-model="account"
@@ -57,6 +58,9 @@
 </template>
 
 <script>
+/**
+ * 多一隻接口在account change的時候即時檢查帳號有沒有重複
+ */
 export default {
   data() {
     return {
@@ -68,10 +72,18 @@ export default {
     };
   },
   methods: {
+    checkAccount: function () {
+      this.$http
+        .get("/CheckAccount", { params: { account: this.account } })
+        .then((data) => {
+          console.log(data);
+        });
+    },
     checkForm: function (e) {
+      this.$router.push({ path: "/User" });
       this.errorPassword = null;
       if (this.password === this.checkPassword) {
-        return true;
+        // return true;
       }
       this.errorPassword = "密碼不一致";
       e.preventDefault();
@@ -109,3 +121,4 @@ export default {
   }
 }
 </style>
+

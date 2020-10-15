@@ -1,15 +1,15 @@
 const express = require('express')
 const index = require('./routes/index');
-var path = require('path');
+const path = require('path');
 const { log } = require('console');
 const app = express()
 const mongoose = require('mongoose');
 const key = require('./db');
+
 mongoose.connect(key, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(index);
-
 
 app.listen(80, console.log('Server running'))
 mongoose.connection.once('open', () => {console.log('DB running')});
