@@ -34,7 +34,7 @@ class IndexCtrl {
 
     async checkAccount(req, res) {
         let a = await User.find({ account: req.query.account })
-        if (a) {
+        if (a.length > 0) {
             console.log(a);
         }
         res.send('test')
