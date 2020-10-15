@@ -51,7 +51,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if ($cookies.get("halkToken")) {
+    if ($cookies.get("haTalkToken")) {
       /**
        * 在login的時候會取得token存在cookie
        * 如果沒有過期則導向畫面
