@@ -6,8 +6,8 @@ const app = express()
 const mongoose = require('mongoose');
 const key = require('./db');
 
-mongoose.connect(key, { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.connect(key.db, { useNewUrlParser: true, useUnifiedTopology: true });
+app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(index);
 

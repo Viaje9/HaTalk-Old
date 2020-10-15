@@ -3,14 +3,14 @@ import App from './App.vue'
 import router from './route'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
+import VueCookies from 'vue-cookies' 
 
 // 全域component
 import MenuComponent from './components/MenuComponent.vue'
 Vue.component('menu-component', MenuComponent)
 
 // 套件
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios, VueCookies)
 
 new Vue({
     render: h => h(App),

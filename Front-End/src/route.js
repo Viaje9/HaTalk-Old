@@ -16,6 +16,7 @@ const router = new VueRouter({
     {
       path: "/",
       component: HomeComponent,
+      meta: { requiresAuth: true }
     },
     {
       path: "/Login",
@@ -49,23 +50,18 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    // console.log(record);
-    if (true) {
+    if ($cookies.get("halkToken")) {
       /**
        * 在login的時候會取得token存在cookie
        * 如果沒有過期則導向畫面
        * 如果過期則返回登入畫面
        */
       next()
-      // next({
-      //   path: '/',
-      // })
     } else {
-      next()
+      next({
+        path: '/login',
+      })
     }
   } else {
     next() // 确保一定要调用 next()

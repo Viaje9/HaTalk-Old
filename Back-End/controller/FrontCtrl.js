@@ -1,48 +1,39 @@
 // const Chatroom = require('../model/User');
+const bcrypt = require('bcrypt');
 const User = require('../model/User')
+const key = require('../db');
+const jwt = require('jsonwebtoken')
+
 
 class IndexCtrl {
-
-
     index(req, res) {
         res.render('index')
     }
 
-    test(req, res) {
-        const data = new Chatroom({
-            id: 1,
-            context: [
-                {
-                    user: "apple",
-                    text: "hello"
-                },
-                {
-                    user: "banana",
-                    text: "hey"
-                }
-            ]
-        });
-
-        data.save((err, a) => {
-            if (err) {
-                return console.log(err);
-            }
-            console.log('test1');
-        })
-        res.send('test')
-    }
-
     async checkAccount(req, res) {
-        let a = await User.find({ account: req.query.account })
-        if (a.length > 0) {
-            console.log(a);
-        }
-        res.send('test')
+        let account = await User.find({ account: req.query.account })
+        res.send(account.length > 0 ? false : true)
     }
 
-    register(req, res) {
+    async register(req, res) {
+        req.body.password = await bcrypt.hash(req.body.password, key.saltRounds).then(function (hash) {
+            return hash
+        });
+        let account = await User.find({ account: req.query.account })
 
-        res.redirect('/#/')
+        if (account.length <= 0) {
+            const data = new User(req.body);
+            data.save((err, a) => {
+                if (err) {
+                    res.send({ success: false })
+                }
+                const token = jwt.sign({ _id: req.body.account }, key.jwt, { expiresIn: '14 day' })
+                res.cookie('haTalkToken', token, { expires: new Date(Date.now() + 1209600000) })
+                res.send({ success: true })
+            })
+        } else {
+            res.send({ success: false })
+        }
     }
 }
 

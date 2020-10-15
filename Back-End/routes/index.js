@@ -4,7 +4,6 @@ const IndexCtrl = require('../controller/FrontCtrl')
 
 
 Router.get('/', IndexCtrl.index)
-Router.get('/test', IndexCtrl.test)
 Router.get('/CheckAccount', IndexCtrl.checkAccount)
 Router.post('/Register', IndexCtrl.register)
 

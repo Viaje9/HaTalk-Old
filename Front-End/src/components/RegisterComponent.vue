@@ -1,7 +1,9 @@
 <template>
   <div class="outer">
     <form @submit="checkForm">
+      <div class="row">{{ errorAccount }}</div>
       <div class="row">{{ errorPassword }}</div>
+      <div class="row">{{ errorRegister }}</div>
       <div class="row">
         <label for="name">暱稱</label>
         <input
@@ -68,24 +70,40 @@ export default {
       account: null,
       password: null,
       checkPassword: null,
+      errorAccount: null,
       errorPassword: null,
+      errorRegister: null,
     };
   },
   methods: {
     checkAccount: function () {
-      this.$http
+      this.axios
         .get("/CheckAccount", { params: { account: this.account } })
         .then((data) => {
-          console.log(data);
+          data.data
+            ? (this.errorAccount = null)
+            : (this.errorAccount = "帳號重複請重新輸入");
         });
     },
     checkForm: function (e) {
-      this.$router.push({ path: "/User" });
       this.errorPassword = null;
-      if (this.password === this.checkPassword) {
-        // return true;
+      if (this.password === this.checkPassword && this.errorAccount === null) {
+        this.axios
+          .post("/Register", {
+            name: this.name,
+            account: this.account,
+            password: this.password,
+          })
+          .then((res) => {
+            if (res.data.success) {
+              this.$router.push({ path: "/" });
+            } else {
+              this.errorRegister = "註冊失敗";
+            }
+          });
+      } else {
+        this.errorPassword = "密碼不一致";
       }
-      this.errorPassword = "密碼不一致";
       e.preventDefault();
     },
   },
