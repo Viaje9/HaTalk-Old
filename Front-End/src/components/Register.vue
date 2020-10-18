@@ -1,6 +1,6 @@
 <template>
   <div class="outer">
-    <form @submit="checkForm">
+    <form @submit.prevent="checkForm">
       <div class="row">{{ errorAccount }}</div>
       <div class="row">{{ errorPassword }}</div>
       <div class="row">{{ errorRegister }}</div>
@@ -96,6 +96,8 @@ export default {
           })
           .then((res) => {
             if (res.data.success) {
+              localStorage.setItem('account', res.data.account);
+              localStorage.setItem('haTalkToken', res.data.token);
               this.$router.push({ path: "/" });
             } else {
               this.errorRegister = "註冊失敗";
@@ -104,7 +106,6 @@ export default {
       } else {
         this.errorPassword = "密碼不一致";
       }
-      e.preventDefault();
     },
   },
 };

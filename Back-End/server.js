@@ -1,18 +1,19 @@
 const express = require('express')
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser')
 const index = require('./routes/index');
 const path = require('path');
-const { log } = require('console');
 const app = express()
-const mongoose = require('mongoose');
 const key = require('./db');
 
 mongoose.connect(key.db, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 app.use(index);
 
 app.listen(80, console.log('Server running'))
-mongoose.connection.once('open', () => {console.log('DB running')});
+mongoose.connection.once('open', () => { console.log('DB running') });
 
 /** 
  * 設定一個給ws的port
@@ -69,11 +70,11 @@ wss.getUniqueID = function () {
 
 
 
-/*** 
+/***
  * 提供靜態檔案
  * 導入VUE
  * 登入驗證
- * 
- * 
- *  
+ *
+ *
+ *
  ***/

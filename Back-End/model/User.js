@@ -14,6 +14,10 @@ module.exports = mongoose.model('User', new mongoose.Schema({
         type: String,
         required: true
     },
+    jwt: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now

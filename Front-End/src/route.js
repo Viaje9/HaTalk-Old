@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import HomeComponent from './components/HomeComponent.vue'
-import LoginComponent from './components/LoginComponent.vue'
-import RegisterComponent from './components/RegisterComponent.vue'
-import UserComponent from './components/UserComponent.vue'
-import SearchComponent from './components/SearchComponent.vue'
-import ChatListComponent from './components/Chat/ChatListComponent.vue'
-import ChatComponent from './components/Chat/ChatComponent.vue'
+import HomeComponent from './components/Home.vue'
+import LoginComponent from './components/Login.vue'
+import RegisterComponent from './components/Register.vue'
+import UserComponent from './components/User.vue'
+import SearchComponent from './components/Search.vue'
+import ChatListComponent from './components/Chat/ChatList.vue'
+import ChatComponent from './components/Chat/Chat.vue'
 
 Vue.use(VueRouter)
 
@@ -51,7 +51,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if ($cookies.get("haTalkToken")) {
+    if (localStorage.getItem("haTalkToken")) {
       /**
        * 在login的時候會取得token存在cookie
        * 如果沒有過期則導向畫面
@@ -59,9 +59,10 @@ router.beforeEach((to, from, next) => {
        */
       next()
     } else {
-      next({
-        path: '/login',
-      })
+      next()
+      // next({
+      //   path: '/login',
+      // })
     }
   } else {
     next() // 确保一定要调用 next()
