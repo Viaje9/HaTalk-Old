@@ -15,7 +15,7 @@ export default {
 	data() {
 		return {
 			list: [
-				{ name: localStorage.getItem("account")||null, url: "/User" },
+				{ name: localStorage.getItem("account"), url: "/User" },
 				{ name: "搜索", url: "/Search" },
 				{ name: "好友", url: "/Chat" },
 				{ name: "更多", url: "/" },

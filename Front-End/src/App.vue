@@ -4,6 +4,20 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted: function () {
+    console.log(this.$store.state.name);
+    this.axios.get("/GetUser").then((res) => {
+      
+			// if (!res.data.success) {
+			// 	this.$router.push({ path: "/Login" });
+			// }
+		});
+  }
+}
+</script>
+
 <style lang="scss">
 html,
 body,

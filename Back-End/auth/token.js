@@ -6,7 +6,7 @@ module.exports = function (req, res, next) {
         jwt.verify(req.header('Token'), key.jwt)
         next()
     } catch {
-        res.send({ success: false })
+        res.status(403)
     }    
 }
 

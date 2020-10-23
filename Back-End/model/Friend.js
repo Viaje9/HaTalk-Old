@@ -1,19 +1,15 @@
 const mongoose = require('mongoose');
 
 
-module.exports = mongoose.model('User', new mongoose.Schema({
+module.exports = mongoose.model('Friend', new mongoose.Schema({
     account: {
         type: String,
         required: true
     },
-    name: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
+    friends: [{
+        account: String,
+        chatroom: String,
+    }],
     createdAt: {
         type: Date,
         default: Date.now

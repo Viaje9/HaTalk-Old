@@ -4,7 +4,7 @@ import router from './route'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
-import Vuex from 'vuex'
+import store from './store';
 
 // 全域component
 import MenuComponent from './components/Menu.vue'
@@ -14,11 +14,12 @@ const instance = axios.create({
     headers: { 'Token': window.localStorage.getItem("haTalkToken") || null }
 });
 // 套件
-Vue.use(VueAxios, instance, VueCookies, Vuex)
+Vue.use(VueAxios, instance, VueCookies)
 
 
 new Vue({
     render: h => h(App),
+    store,
     router
 }).$mount('#app')
 
