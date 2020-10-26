@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const key = require('./db');
 const User = require('./model/User');
-const Friend = require('./model/Friend');
-const Chatroom = require('./model/Chatroom');
+const Chat = require('./model/Chat');
 
 mongoose.connect(key.db, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -54,14 +53,39 @@ function fun3() {
 
 
 /**新增好友 */
-// const userAccount = "Account1"
-// const friendAccount = "Account2"
+const user1 = "Account1"
+const user2 = "Account2"
 // User.findOne({ account: userAccount }, (err, res) => {
 //     User.updateOne({ account: friendAccount }, { $push: { friends: res._id } }, (err, res) => {
 //         if (err) return handleError(err)
 //         console.log("ok");
 //     })
 // })
+const newChat = new Chat()
+creatFriend(user1, user2)
+creatFriend(user2, user1)
+newChat.save()
+
+function creatFriend(user, friend) {
+    User.findOne({ account: user }, (err, res) => {
+        const data = {
+            friends: res._id,
+            chatList: {
+                friend: res.account,
+                chat: newChat._id
+            }
+        }
+        User.updateOne({ account: friend }, { $push: data }, (err, res) => {
+            if (err) return handleError(err)
+            console.log("ok");
+        })
+    })
+}
+
+/**聊天室 */
+// const newChat = new Chat()
+// console.log(newChat._id);
+// newChat.save()
 
 /**搜索好友清單 */
 // const userAccount = "Account1"
@@ -84,3 +108,7 @@ function fun3() {
 
 
 
+/**
+ * 新增使用者時新增聊天室清單
+ * 加入好友時將兩個人的聊天室清單加入聊天室
+ */

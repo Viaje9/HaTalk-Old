@@ -1,7 +1,6 @@
 // const Chatroom = require('../model/User');
 const bcrypt = require('bcrypt');
 const User = require('../model/User')
-const Friend = require('../model/Friend')
 const key = require('../db');
 const jwt = require('jsonwebtoken')
 
@@ -18,45 +17,50 @@ class IndexCtrl {
 
     //待優化
     async register(req, res) {
-        req.body.password = await bcrypt.hash(req.body.password, key.saltRounds).then(function (hash) {
-            return hash
-        });
+        //加密
+        req.body.password = await bcrypt.hash(req.body.password, key.saltRounds)
+        //搜索帳號
         const account = await User.find({ account: req.query.account })
-        console.log(account);
         //不要相信前端傳進來的東西(寫驗證)
+        //檢查帳號是否重複
         if (account.length <= 0) {
             //新增使用者
-            const setUser = new User(req.body);
-            await setUser.save((err, a) => {
-                if (err) {
-                    res.send({ success: false })
-                }
-            })
-            const token = jwt.sign({ _id: req.body.account }, key.jwt, { expiresIn: '14 day' })
-            const setFriend = new Friend({ account: req.body.account })
-
-            //新增使用者好友名單
-            await setFriend.save((err, a) => {
-                if (err) {
-                    res.send({ success: false })
-                }
+            User.create(req.body, (err, user) => {
+                if (err) res.send({ success: false })
+                //新增token
+                const token = jwt.sign({ _id: req.body.account }, key.jwt, { expiresIn: '14 day' })
+                res.cookie("Token", token, { httpOnly: true })
                 res.json({ success: true, token: token, account: req.body.account })
             })
-
-            
         } else {
             res.json({ success: false })
         }
     }
 
-    async getUser(req, res) {
-        const account = jwt.verify(req.header('Token'), key.jwt)._id
+    getUser(req, res) {
         //取得好友名單就好
-        Friend.findOne({ account: account }, (err, a) => {
-            if (err) {
-                res.json(err)
+        User.findOne({ account: req.account }).populate('friends').exec(function (err, result) {
+            if (err) res.send({ success: false })
+            const data = {
+                name: result.name,
+                account: result.account,
+                friends: result.friends.map(e => { return { name: e.name, state: e.state } })
             }
-            res.json(a)
+            res.json(data)
+        })
+    }
+
+    updateUserName(req, res) {
+        User.updateOne({ account: req.account }, { name: req.body.name }, (err, result) => {
+            if (err) return handleError(err)
+            res.send({ success: true })
+        })
+    }
+
+    updateUserState(req, res) {
+        User.updateOne({ account: req.account }, { name: req.body.state }, (err, result) => {
+            if (err) return handleError(err)
+            res.send({ success: true })
         })
     }
 

@@ -1,42 +1,63 @@
 <template>
-  <div class="outer">
-    <menu-component></menu-component>
-    <div class="main">
-      <h2>個人檔案</h2>
-      <span></span>
-      <div class="changeName">
-        <input type="text">
-        <button>更新</button>
-      </div>
-      <div class="stateMsg">
-        <input type="text">
-        <button>更新</button>
-      </div>
-    </div>
-  </div>
+	<div class="outer">
+		<menu-component></menu-component>
+		<div class="main">
+			<h2>個人檔案</h2>
+			<span></span>
+			<div class="changeName">
+				<span>更新名稱</span>
+				<input type="text" v-model="name" />
+				<button v-on:click="changeName">更新</button>
+			</div>
+			<div class="changeState">
+				<span>更新狀態</span>
+				<input type="text" v-model="state" />
+				<button v-on:click="changeState">更新</button>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      
-    }
-  },
-  mounted: function () {
+	data() {
+		return {
+			name: null,
+			state: null,
+		};
+	},
+	mounted: function () {
 		// this.axios
 		// 	.get("/test")
 		// 	.then((res) => {
-    //     if(!res.data.success) {
-    //       this.$router.push({ path: "/Login" });
-    //     }
+		//     if(!res.data.success) {
+		//       this.$router.push({ path: "/Login" });
+		//     }
 		// 	})
+	},
+	methods: {
+		changeName: function () {
+			this.axios.put("/UpdateUserName", { name: this.name }).then((res) => {
+				if (!res.data.success) {
+					this.$router.push({ path: "/Login" });
+        }
+        this.$store.commit('updateUserName', this.name)
+			});
+		},
+		changeState: function () {
+			this.axios.put("/UpdateUserState", { state: this.state }).then((res) => {
+				if (!res.data.success) {
+					this.$router.push({ path: "/Login" });
+        }
+        this.$store.commit('updateUserState', this.state)
+			});
+		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
 .outer {
-  display: flex;
+	display: flex;
 }
 </style>

@@ -1,21 +1,24 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+	<div>
+		<router-view></router-view>
+	</div>
 </template>
 
 <script>
 export default {
-  mounted: function () {
-    console.log(this.$store.state.name);
-    this.axios.get("/GetUser").then((res) => {
-      
+	mounted: function () {
+
+		this.axios.get("/GetUser").then((res) => {
+			// console.log()
+      this.$store.commit('setUser', res.data)
+       console.log(this.$store.state)
+			// console.log(res.data)
 			// if (!res.data.success) {
 			// 	this.$router.push({ path: "/Login" });
 			// }
 		});
-  }
-}
+	},
+};
 </script>
 
 <style lang="scss">
@@ -100,12 +103,12 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -119,29 +122,28 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
+	display: block;
 }
 body {
-  line-height: 1;
+	line-height: 1;
 }
 ol,
 ul {
-  list-style: none;
+	list-style: none;
 }
 blockquote,
 q {
-  quotes: none;
+	quotes: none;
 }
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
-  content: none;
+	content: "";
+	content: none;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-
 </style>

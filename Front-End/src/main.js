@@ -3,24 +3,20 @@ import App from './App.vue'
 import router from './route'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import VueCookies from 'vue-cookies'
 import store from './store';
 
 // 全域component
 import MenuComponent from './components/Menu.vue'
 Vue.component('menu-component', MenuComponent)
 
-const instance = axios.create({
-    headers: { 'Token': window.localStorage.getItem("haTalkToken") || null }
-});
 // 套件
-Vue.use(VueAxios, instance, VueCookies)
+Vue.use(VueAxios, axios)
 
 
 new Vue({
     render: h => h(App),
-    store,
-    router
+    router,
+    store
 }).$mount('#app')
 
 /**

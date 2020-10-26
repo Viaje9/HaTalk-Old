@@ -1,10 +1,17 @@
 <template>
 	<div class="outer">
 		<ul>
-			<li v-for="(item, index) in list" :key="index">
-				<router-link :to="item.url">
-					{{ index + 1 }}. {{ item.name }}
-				</router-link>
+			<li>
+				<router-link to="/User">{{ name }}</router-link>
+			</li>
+			<li>
+				<router-link to="/Search">搜索</router-link>
+			</li>
+			<li>
+				<router-link to="/Chat">好友</router-link>
+			</li>
+			<li>
+				<router-link to="/">更多</router-link>
 			</li>
 		</ul>
 	</div>
@@ -12,16 +19,11 @@
 
 <script>
 export default {
-	data() {
-		return {
-			list: [
-				{ name: localStorage.getItem("account"), url: "/User" },
-				{ name: "搜索", url: "/Search" },
-				{ name: "好友", url: "/Chat" },
-				{ name: "更多", url: "/" },
-			],
-		};
-	}
+	computed: {
+		name() {
+			return this.$store.state.name;
+		},
+	},
 };
 </script>
 

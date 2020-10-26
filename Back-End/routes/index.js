@@ -9,7 +9,10 @@ const key = require('../db');
 Router.get('/', IndexCtrl.index)
 Router.get('/CheckAccount', IndexCtrl.checkAccount)
 Router.post('/Register', IndexCtrl.register)
-Router.get('/GetUser',Auth, IndexCtrl.getUser)
+Router.get('/GetUser', Auth, IndexCtrl.getUser)
+Router.put('/UpdateUserName',Auth, IndexCtrl.updateUserName)
+Router.put('/UpdateUserState',Auth, IndexCtrl.updateUserState)
+
 // Router.get('/test',Auth, IndexCtrl.test)
 
 

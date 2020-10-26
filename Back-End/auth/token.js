@@ -3,7 +3,7 @@ const key = require('../db');
 
 module.exports = function (req, res, next) {
     try {
-        jwt.verify(req.header('Token'), key.jwt)
+        req.account = jwt.verify(req.cookies.Token, key.jwt)._id
         next()
     } catch {
         res.status(403)

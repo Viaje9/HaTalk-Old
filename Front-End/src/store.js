@@ -8,7 +8,21 @@ const store = new Vuex.Store({
     state: {
         name: null,
         account: null,
-        friend: []
+        friend: [],
+        state: null
+    },
+    mutations: {
+        setUser(state, data) {
+            state.name = data.name
+            state.account = data.account
+            state.friend = data.friend
+        },
+        updateUserName(state, data) {
+            state.name = data
+        },
+        updateUserState(state, data) {
+            state.state = data
+        }
     }
 })
 
