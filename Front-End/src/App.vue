@@ -9,10 +9,7 @@ export default {
 	mounted: function () {
 
 		this.axios.get("/GetUser").then((res) => {
-			// console.log()
       this.$store.commit('setUser', res.data)
-       console.log(this.$store.state)
-			// console.log(res.data)
 			// if (!res.data.success) {
 			// 	this.$router.push({ path: "/Login" });
 			// }

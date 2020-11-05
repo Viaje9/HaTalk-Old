@@ -7,18 +7,19 @@
 			<div class="changeName">
 				<span>更新名稱</span>
 				<input type="text" v-model="name" />
-				<button v-on:click="changeName">更新</button>
+				<button @click="changeName">更新</button>
 			</div>
 			<div class="changeState">
 				<span>更新狀態</span>
 				<input type="text" v-model="state" />
-				<button v-on:click="changeState">更新</button>
+				<button @click="changeState">更新</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+
 export default {
 	data() {
 		return {
@@ -36,20 +37,20 @@ export default {
 		// 	})
 	},
 	methods: {
-		changeName: function () {
+		changeName() {
 			this.axios.put("/UpdateUserName", { name: this.name }).then((res) => {
 				if (!res.data.success) {
 					this.$router.push({ path: "/Login" });
-        }
-        this.$store.commit('updateUserName', this.name)
+				}
+				this.$store.commit("updateUserName", this.name);
 			});
 		},
-		changeState: function () {
+		changeState() {
 			this.axios.put("/UpdateUserState", { state: this.state }).then((res) => {
 				if (!res.data.success) {
 					this.$router.push({ path: "/Login" });
-        }
-        this.$store.commit('updateUserState', this.state)
+				}
+				this.$store.commit("updateUserState", this.state);
 			});
 		},
 	},

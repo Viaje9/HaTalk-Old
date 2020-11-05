@@ -76,7 +76,7 @@ export default {
     };
   },
   methods: {
-    checkAccount: function () {
+    checkAccount() {
       this.axios
         .get("/CheckAccount", { params: { account: this.account } })
         .then((data) => {
@@ -85,7 +85,7 @@ export default {
             : (this.errorAccount = "帳號重複請重新輸入");
         });
     },
-    checkForm: function (e) {
+    checkForm(e) {
       this.errorPassword = null;
       if (this.password === this.checkPassword && this.errorAccount === null) {
         this.axios
