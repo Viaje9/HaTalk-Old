@@ -18,9 +18,9 @@ Vue.use(new VueSocketIO({
 }))
 
 new Vue({
-    render: h => h(App),
+    store,
     router,
-    store
+    render: h => h(App)
 }).$mount('#app')
 
 /**

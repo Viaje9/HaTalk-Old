@@ -16,7 +16,12 @@ class IndexCtrl {
             if (err) response.json({ success: false })
             if (res !== null) {
                 bcrypt.compare(req.body.password, res.password, function (err, result) {
-                    if (result) response.json({ success: true })
+                    console.log(result);
+                    if (result) {
+                        const token = jwt.sign({ _id: req.body.account }, key.jwt, { expiresIn: '14 day' })
+                        response.cookie("Token", token, { httpOnly: true })
+                        response.json({ success: true })
+                    } 
                     else response.json({ success: false })
                 });
             }
@@ -53,18 +58,14 @@ class IndexCtrl {
 
     getUser(req, res) {
         //取得好友名單就好
-
         User.findOne({ account: req.account }).populate('friends').exec(function (err, result) {
-            if (err || result === null) res.send({ success: false })
-            else {
-                const data = {
-                    name: result.name,
-                    account: result.account,
-                    friends: result.friends.map(e => { return { name: e.name, state: e.state,account: e.account } })
-                }
-                res.json(data)
+            const data = {
+                success: true,
+                name: result.name,
+                account: result.account,
+                friends: result.friends.map(e => { return { name: e.name, state: e.state, account: e.account } })
             }
-
+            res.json(data)
         })
     }
 
@@ -135,8 +136,8 @@ class IndexCtrl {
     // }
 
     async getMsg(req, response) {
-        const room = await User.findOne({ account: req.account },{ chatList: {$elemMatch: {friend: req.query.account}} })
-        Chat.findOne({_id: room.chatList[0].chat},function (err,res) {
+        const room = await User.findOne({ account: req.account }, { chatList: { $elemMatch: { friend: req.query.account } } })
+        Chat.findOne({ _id: room.chatList[0].chat }, function (err, res) {
             response.json(res.record)
         })
     }

@@ -8,7 +8,7 @@
 			</div>
 			<div class="row">
 				<label for="">密碼</label>
-				<input type="password" v-model="password"/>
+				<input type="password" v-model="password" />
 			</div>
 			<div class="row">
 				<router-link class="btn" to="/Register"> 註冊 </router-link>
@@ -23,7 +23,7 @@ export default {
 	data() {
 		return {
 			account: null,
-			password: null
+			password: null,
 		};
 	},
 	methods: {
@@ -31,11 +31,11 @@ export default {
 			this.axios
 				.post("/Login", {
 					account: this.account,
-					password: this.password
+					password: this.password,
 				})
 				.then((res) => {
 					if (res.data.success) {
-						this.$router.push({ path: "/" });
+            this.$store.commit("setUser","login");
 					} else {
 						console.log("err");
 					}

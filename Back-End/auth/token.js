@@ -6,7 +6,7 @@ module.exports = function (req, res, next) {
         req.account = jwt.verify(req.cookies.Token, key.jwt)._id
         next()
     } catch {
-        res.status(403)
+        res.send({ success: false })
     }    
 }
 

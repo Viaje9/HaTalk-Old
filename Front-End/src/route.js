@@ -51,18 +51,16 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (localStorage.getItem("haTalkToken")) {
+    if (from.matched.length === 0 || router.app.$store.state.account) {
       /**
-       * 在login的時候會取得token存在cookie
-       * 如果沒有過期則導向畫面
-       * 如果過期則返回登入畫面
+       * 如果是剛開啟網頁
+       * 或是找到account
        */
       next()
     } else {
-      next()
-      // next({
-      //   path: '/login',
-      // })
+      next({
+        path: '/login',
+      })
     }
   } else {
     next() // 确保一定要调用 next()

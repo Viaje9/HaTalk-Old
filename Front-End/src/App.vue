@@ -6,15 +6,9 @@
 
 <script>
 export default {
-	mounted: function () {
-
-		this.axios.get("/GetUser").then((res) => {
-      this.$store.commit('setUser', res.data)
-			// if (!res.data.success) {
-			// 	this.$router.push({ path: "/Login" });
-			// }
-		});
-	},
+	beforeCreate(){
+		this.$store.commit("setUser");
+	}
 };
 </script>
 
