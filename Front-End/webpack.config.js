@@ -26,6 +26,17 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf|png|svg|jpg|gif)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 1000, //bytes
+                        name: '/images/[hash:7].[ext]',
+                        outputPath: 'assets'
+                    }
+                }
             }
         ]
     }, plugins: [
