@@ -21,7 +21,7 @@ class IndexCtrl {
                         const token = jwt.sign({ _id: req.body.account }, key.jwt, { expiresIn: '14 day' })
                         response.cookie("Token", token, { httpOnly: true })
                         response.json({ success: true })
-                    } 
+                    }
                     else response.json({ success: false })
                 });
             }
@@ -77,7 +77,7 @@ class IndexCtrl {
     }
 
     updateUserState(req, res) {
-        User.updateOne({ account: req.account }, { name: req.body.state }, (err, result) => {
+        User.updateOne({ account: req.account }, { state: req.body.state }, (err, result) => {
             if (err) res.send({ success: false })
             res.send({ success: true })
         })
@@ -102,28 +102,30 @@ class IndexCtrl {
     }
 
     addFriend(req, res) {
-        /**
-         * 好友重複
-         * 加自己好友
-         */
-        if (req.account !== req.body.account) {
-            const newChat = new Chat()
-            creatFriend(req.account, req.body.account, newChat._id)
-            creatFriend(req.body.account, req.account, newChat._id)
-            newChat.save()
-            res.send({ success: true })
-        } else res.send({ success: false })
+        User.findOne({ account: req.account }).populate('friends').exec(function (err, result) {
+            const repeat = result.friends.filter(e => e.account === req.body.account)
+            if (repeat.length == 0) {
+                if (req.account !== req.body.account) {
+                    console.log("check account");
+                    const newChat = new Chat()
+                    creatFriend(req.account, req.body.account, newChat._id)
+                    creatFriend(req.body.account, req.account, newChat._id)
+                    newChat.save()
+                    res.send({ success: true })
+                } else res.send({ success: false })
+            } else res.send({ success: false })
+        })
 
         function creatFriend(user, friend, chatId) {
-            User.findOne({ account: user }, (err, res) => {
+            User.findOne({ account: user }, (err, userRes) => {
                 const data = {
-                    friends: res._id,
+                    friends: userRes._id,
                     chatList: {
-                        friend: res.account,
+                        friend: userRes.account,
                         chat: chatId
                     }
                 }
-                User.updateOne({ account: friend }, { $push: data })
+                User.updateOne({ account: friend }, { $push: data }).exec()
             })
         }
     }
