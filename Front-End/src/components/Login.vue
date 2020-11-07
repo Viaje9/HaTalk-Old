@@ -6,10 +6,10 @@
 					<div class="row">
 						<h2>Login</h2>
 					</div>
-					<div class="row" :class="{loginErr: loginErr}">
+					<div class="row" :class="{ loginErr: loginErr }">
 						<input type="text" v-model="account" placeholder="輸入帳號" />
 					</div>
-					<div class="row" :class="{loginErr: loginErr}">
+					<div class="row" :class="{ loginErr: loginErr }">
 						<input type="password" v-model="password" placeholder="輸入密碼" />
 					</div>
 					<div class="row">
@@ -33,7 +33,7 @@ export default {
 		return {
 			account: null,
 			password: null,
-			loginErr: false
+			loginErr: false,
 		};
 	},
 	methods: {
@@ -68,7 +68,7 @@ export default {
 		width: 1140px;
 		height: 587px;
 		.left {
-      letter-spacing: 3px;
+			letter-spacing: 3px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -76,7 +76,7 @@ export default {
 			width: 50%;
 			height: 100%;
 			background-color: #0b2239;
-      position: relative;
+			position: relative;
 			form {
 				display: flex;
 				justify-content: center;
@@ -106,7 +106,7 @@ export default {
 						text-align: center;
 						color: #c8c8c8;
 						font-size: 16px;
-            letter-spacing: 2px;
+						letter-spacing: 2px;
 					}
 					textarea:focus,
 					input:focus {
@@ -158,29 +158,29 @@ export default {
 				}
 				.row:nth-child(2)::after {
 					background-image: url("../assets/images/account.svg");
-          background-size: cover;
+					background-size: cover;
 				}
 
 				.row:nth-child(3)::after {
 					background-image: url("../assets/images/lock.svg");
-          background-size: cover;
+					background-size: cover;
 				}
 				.row:nth-child(4) {
 					width: 100%;
 					display: flex;
 					justify-content: space-around;
 				}
-        .loginErr {
-          border: 1px solid #f16464 !important;
-        }
+				.loginErr {
+					border: 1px solid #f16464 !important;
+				}
 			}
-      .err {
-        position: absolute;
-        bottom: 76px;
-        font-size: 18px;
-        color: #f16464;
-        font-weight: 100;
-      }
+			.err {
+				position: absolute;
+				bottom: 76px;
+				font-size: 18px;
+				color: #f16464;
+				font-weight: 100;
+			}
 		}
 		.right {
 			color: #0b2239;
