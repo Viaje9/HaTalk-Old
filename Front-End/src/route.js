@@ -62,6 +62,8 @@ router.beforeEach((to, from, next) => {
         path: '/login',
       })
     }
+    //測試用
+    // next()
   } else {
     next() // 确保一定要调用 next()
   }
