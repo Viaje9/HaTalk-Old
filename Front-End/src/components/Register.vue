@@ -18,9 +18,11 @@
 							placeholder="輸入暱稱"
 						/>
 					</div>
-					<div class="row" :class="{ registerErr: errorAccount || errorRegister }">
+					<div
+						class="row"
+						:class="{ registerErr: errorAccount || errorRegister }"
+					>
 						<input
-							
 							@change="checkAccount"
 							id="account"
 							name="account"
@@ -32,9 +34,11 @@
 							placeholder="輸入帳號"
 						/>
 					</div>
-					<div class="row" :class="{ registerErr: errorPassword || errorRegister }">
+					<div
+						class="row"
+						:class="{ registerErr: errorPassword || errorRegister }"
+					>
 						<input
-							
 							id="password"
 							name="password"
 							v-model="password"
@@ -45,9 +49,11 @@
 							placeholder="輸入密碼"
 						/>
 					</div>
-					<div class="row" :class="{ registerErr: errorPassword || errorRegister }">
+					<div
+						class="row"
+						:class="{ registerErr: errorPassword || errorRegister }"
+					>
 						<input
-							
 							id="checkPassword"
 							name="checkPassword"
 							v-model="checkPassword"
@@ -112,7 +118,7 @@ export default {
 					})
 					.then((res) => {
 						if (res.data.success) {
-              this.$store.commit("setUser", "register");
+							this.$store.commit("setUser", "register");
 						} else {
 							this.errorRegister = "註冊失敗";
 						}

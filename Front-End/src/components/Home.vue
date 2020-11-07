@@ -58,12 +58,12 @@ export default {};
 					width: 100%;
 					height: 100%;
 					background-color: $color2;
-          transition: box-shadow 0.1s;
+					transition: box-shadow 0.1s;
 					box-shadow: 7px 7px 5px rgba(0, 0, 0, 50%);
 				}
-        .btn:active {
-          box-shadow: 0 0 0 rgba(0, 0, 0, 0%);
-        }
+				.btn:active {
+					box-shadow: 0 0 0 rgba(0, 0, 0, 0%);
+				}
 			}
 			li:nth-child(3n + 1) .btn {
 				background-color: $color1;
@@ -76,21 +76,21 @@ export default {};
 				background-image: url("../assets/images/account.svg");
 			}
 			li:nth-child(2) .btn .bgImg {
-        width: 35%;
+				width: 35%;
 				height: 75%;
 				background-size: cover;
 				background-position: 100% 0px;
 				background-image: url("../assets/images/search.svg");
 			}
 			li:nth-child(3) .btn .bgImg {
-        width: 50%;
+				width: 50%;
 				height: 75%;
 				background-size: cover;
-				background-position: 105%  0px;
+				background-position: 105% 0px;
 				background-image: url("../assets/images/friends.svg");
 			}
 			li:nth-child(4) .btn .bgImg {
-        width: 35%;
+				width: 35%;
 				height: 75%;
 				background-size: cover;
 				background-position: 0px 0px;

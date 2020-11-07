@@ -5,7 +5,7 @@
 			<div class="avatar">
 				<img :src="avatarImg" alt="" />
 			</div>
-			<div class="name">{{ name || "哈哈" }}</div>
+			<div class="name">{{ name }}</div>
 		</div>
 		<div class="body">
 			<router-link class="btn" to="/User"></router-link>
@@ -13,9 +13,9 @@
 			<router-link class="btn" to="/Chat"></router-link>
 			<router-link class="btn" to="/"></router-link>
 		</div>
-    <div class="footer">
-      <span>Copyright © 2020 Viaje9 Design.</span>
-    </div>
+		<div class="footer">
+			<span>Copyright © 2020 Viaje9 Design.</span>
+		</div>
 	</div>
 </template>  
 
@@ -37,6 +37,8 @@ export default {
 
 <style lang="scss" scoped>
 .outer {
+	position: relative;
+	z-index: 999;
 	$color1: #0b2239;
 	$color2: #ffffff;
 	display: block;
@@ -97,11 +99,11 @@ export default {
 			background-image: url("../assets/images/settings.svg");
 		}
 	}
-  .footer {
-    padding: 46% 0 0;
-    text-align: center;
-    font-weight: 100;
-    font-size: 13px;
-  }
+	.footer {
+		padding: 46% 0 0;
+		text-align: center;
+		font-weight: 100;
+		font-size: 13px;
+	}
 }
 </style>
