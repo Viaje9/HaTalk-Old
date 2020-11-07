@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
             text: msg,
             time: Date.now()
         }
-        Chat.updateOne({ _id: socket.room }, { $push: { record: data } })
+        Chat.updateOne({ _id: socket.room }, { $push: { record: data } }).exec()
         io.to(socket.room).emit('chat message', data);
     });
 

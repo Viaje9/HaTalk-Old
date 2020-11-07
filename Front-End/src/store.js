@@ -14,14 +14,14 @@ const store = new Vuex.Store({
         state: null
     },
     mutations: {
-        setUser(state,from) {
+        setUser(state, from) {
             axios.get("/GetUser").then((res) => {
                 const data = res.data
                 state.name = data.name
                 state.account = data.account
                 state.friends = data.friends
                 if (!data.success) route.push({ path: "/Login" });
-                else if (from) route.push({ path: "/" });         
+                else if (from) route.push({ path: "/" });
             });
         },
         updateUserName(state, data) {
@@ -29,6 +29,12 @@ const store = new Vuex.Store({
         },
         updateUserState(state, data) {
             state.state = data
+        }
+    },
+    getters: {
+        getFriend: (state) => (account) => {
+            if(state.friends.length !== 0)
+            return state.friends.filter(e => e.account === account)[0].name
         }
     }
 })

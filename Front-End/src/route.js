@@ -51,6 +51,11 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (from.matched.length === 0 && to.path.substring(0, 6) === "/Chat/") {
+      next({
+        path: '/Chat',
+      })
+    }
     if (from.matched.length === 0 || router.app.$store.state.account) {
       /**
        * 如果是剛開啟網頁
@@ -62,8 +67,6 @@ router.beforeEach((to, from, next) => {
         path: '/login',
       })
     }
-    // 測試用
-    // next()
   } else {
     next() // 确保一定要调用 next()
   }
