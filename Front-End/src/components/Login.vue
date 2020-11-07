@@ -33,7 +33,7 @@ export default {
 		return {
 			account: null,
 			password: null,
-			loginErr: false,
+			loginErr: false
 		};
 	},
 	methods: {
@@ -135,11 +135,11 @@ export default {
 					}
 				}
 				.row:nth-child(1) {
-					padding: 0 0 32px;
+					padding: 0 0 52px;
 				}
 				.row:nth-child(2),
 				.row:nth-child(3) {
-					margin: 0 0 32px;
+					margin: 0 0 43px;
 					position: relative;
 					border: 1px solid #ffffff;
 					border-radius: 5px;
@@ -155,14 +155,15 @@ export default {
 					content: "";
 					width: $size;
 					height: $size;
-					background-size: cover;
 				}
 				.row:nth-child(2)::after {
 					background-image: url("../assets/images/account.svg");
+          background-size: cover;
 				}
 
 				.row:nth-child(3)::after {
 					background-image: url("../assets/images/lock.svg");
+          background-size: cover;
 				}
 				.row:nth-child(4) {
 					width: 100%;
@@ -175,7 +176,7 @@ export default {
 			}
       .err {
         position: absolute;
-        bottom: 120px;
+        bottom: 76px;
         font-size: 18px;
         color: #f16464;
         font-weight: 100;

@@ -6,21 +6,20 @@
 
 <script>
 export default {
-	beforeCreate(){
+	beforeCreate() {
 		this.$store.commit("setUser");
-	}
+	},
 };
 </script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,200,300,400,500,600&display=swap");
-*{
+* {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	font-family: 'Noto Sans TC';
+	font-family: "Noto Sans TC";
 	text-decoration: none;
-	
 }
 html,
 body,
@@ -144,11 +143,15 @@ table {
 	border-spacing: 0;
 }
 button {
-	box-sizing:unset;
+	box-sizing: unset;
 	padding: 0;
 	letter-spacing: unset;
 }
 button:hover {
 	cursor: pointer;
+}
+input {
+	outline: unset;
+	border: unset;
 }
 </style>
