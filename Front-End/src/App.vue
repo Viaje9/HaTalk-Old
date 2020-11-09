@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="app">
 		<router-view></router-view>
 	</div>
 </template>
@@ -14,6 +14,11 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,200,300,400,500,600&display=swap");
+.app{
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
 * {
 	font-size: 100%;
 	font: inherit;

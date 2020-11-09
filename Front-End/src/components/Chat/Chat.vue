@@ -18,7 +18,7 @@
 					</div>
 				</div>
 				<form class="input" @submit.prevent="send">
-					<input type="text" v-model="msg" />
+					<input type="text" v-model="msg" placeholder="輸入訊息" />
 					<button v-on:keyup.enter="submit" class="btn">送出</button>
 				</form>
 			</div>
@@ -57,7 +57,6 @@ export default {
 	},
 	methods: {
 		send() {
-			console.log(this.msg);
 			this.$socket.emit("chat message", this.msg);
 			this.msg = null;
 		},
@@ -126,24 +125,26 @@ export default {
 						}
 					}
 					.text {
+						color: $color1;
 						display: inline-block;
 						border-radius: 5px;
 						max-width: 500px;
 						word-wrap: break-word;
 						padding: 5px;
 						margin: 13px 0px 0px 50px;
-						border: 1px solid $color2;
 						position: relative;
+						background-color: $color2;
 					}
 					.text::after {
 						position: absolute;
-						top: -21px;
-						left: -19px;
+						top: -10px;
+						left: -37px;
 						width: 41px;
-						height: 20px;
-						background-color: $color2;
+						height: 10px;
+						background-color: $color1;
 						content: "";
-						clip-path: polygon(35% 34%, 59% 100%, 100% 100%);
+						border-right: 0.5em solid $color2;
+						border-top-right-radius: 1em 0.5em;
 					}
 				}
 				.user {
@@ -152,13 +153,17 @@ export default {
 						margin-left: auto;
 					}
 					.text {
+						background-color: #c7c7c7;
 						text-align: left;
 						margin: 13px 50px 0px 0px;
 					}
 					.text::after {
 						left: unset;
-						right: -14px;
-						clip-path: polygon(100% 35%, 27% 100%, 80% 100%);
+						right: -35px;
+						border-left: 0.5em solid #c7c7c7;
+						border-top-left-radius: 1em 0.5em;
+						border-right: unset;
+						border-top-right-radius: unset;
 					}
 				}
 			}
@@ -185,6 +190,65 @@ export default {
 					width: 90px;
 					height: 97%;
 					border: 1px solid $color2;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 960px) {
+	.outer {
+		display: block;
+		.container {
+			width: 100%;
+			height: calc(100% - 57px);
+			.content {
+				width: 97%;
+				height: 97%;
+				#text_area {
+					height: calc(100% - 70px);
+					padding: 10px;
+					margin: 10px;
+					font-size: 13px;
+					letter-spacing: 1px;
+					.msg {
+						padding: 10px 0;
+						.avatar {
+							width: 30px;
+							height: 30px;
+						}
+						.text {
+							margin: 13px 0px 0px 15px;
+						}
+						.text::after {
+							left: -23px;
+						}
+					}
+					.user {
+						.avatar {
+						}
+						.text {
+							margin: 13px 15px 0px 0px;
+						}
+						.text::after {
+							left: unset;
+							right: -27px;
+						}
+					}
+				}
+				.input {
+					height: 50px;
+					input {
+						width: 80%;
+						box-sizing: border-box;
+						padding: 0 0 0 14px;
+						font-size: 16px;
+						font-weight: 100;
+					}
+					.btn {
+						width: 20%;
+						margin: 8px 0 0;
+						height: 70%;
+					}
 				}
 			}
 		}

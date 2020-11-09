@@ -203,4 +203,75 @@ export default {
 		}
 	}
 }
+@media (max-width: 960px) {
+	.outer {
+		.container {
+      box-sizing: border-box;
+			padding: 25px 0 0 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+			text-align: center;
+			.left {
+				margin: auto;
+				width: 90%;
+				height: 58%;
+				form {
+					.row {
+						h2 {
+							font-size: 24px;
+						}
+						input {
+							font-size: 13px;
+						}
+						input::placeholder {
+							font-size: 13px;
+							letter-spacing: 2px;
+						}
+						textarea:focus,
+						input:focus {
+							font-size: 13px;
+							font-weight: 100;
+							color: #ffffff;
+						}
+						.btn {
+							$height: 32px;
+							font-size: 13px;
+							line-height: $height;
+							width: 100px;
+							height: $height;
+						}
+					}
+					.row:nth-child(1) {
+						padding: 0 0 40px;
+					}
+					.row:nth-child(2),
+					.row:nth-child(3) {
+            margin: 0 0 50px;
+						width: 230px;
+						height: 32px;
+					}
+					.row:nth-child(2)::after,
+					.row:nth-child(3)::after {
+						$size: 19px;
+						left: 6px;
+						top: 7px;
+						width: $size;
+						height: $size;
+					}
+				}
+			}
+			.right {
+				position: relative;
+				margin: auto;
+				width: 90%;
+				height: 37%;
+				h1 {
+					font-size: 40px;
+					padding: 54px 0 87px 0;
+				}
+			}
+		}
+	}
+}
 </style>

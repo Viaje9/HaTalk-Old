@@ -106,4 +106,29 @@ export default {
 		font-size: 13px;
 	}
 }
+@media (max-width: 960px) {
+	.outer {
+		width: 100%;
+		height: 57px;
+		box-shadow: -1px 7px 5px rgba(0, 0, 0, 50%);
+		.head {
+			display: none;
+		}
+		.body {
+			flex-flow: unset;
+			justify-content: space-around;
+			height: 100%;
+			.btn {
+				margin: 0 0 0;
+				width: 30px;
+				height: 30px;
+				background-size: 60px 30px;
+				background-position: 0px 0px;
+			}
+		}
+		.footer{
+			display: none;
+		}
+	}
+}
 </style>

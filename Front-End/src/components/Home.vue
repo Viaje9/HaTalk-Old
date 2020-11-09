@@ -99,4 +99,29 @@ export default {};
 		}
 	}
 }
+@media (max-width: 960px) {
+	.outer {
+		.container {
+			width: 100%;
+			ul {
+				li:nth-child(1) .btn .bgImg {
+					width: 50%;
+					height: 30%;
+				}
+				li:nth-child(2) .btn .bgImg {
+					width: 50%;
+					height: 30%;
+				}
+				li:nth-child(3) .btn .bgImg {
+					width: 65%;
+					height: 30%;
+				}
+				li:nth-child(4) .btn .bgImg {
+					width: 50%;
+					height: 31%;
+				}
+			}
+		}
+	}
+}
 </style>

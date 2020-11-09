@@ -234,15 +234,7 @@ export default {
 				background-size: 44px 27px;
 				background-position: -21px 0px;
 			}
-			.row:nth-child(4)::after {
-				background-image: url("../assets/images/lock.svg");
-				left: 8px;
-				top: 5px;
-				width: 26px;
-				height: 28px;
-				background-size: 44px 27px;
-				background-position: -21px 0px;
-			}
+			.row:nth-child(4)::after,
 			.row:nth-child(5)::after {
 				background-image: url("../assets/images/lock.svg");
 				left: 8px;
@@ -252,6 +244,7 @@ export default {
 				background-size: 44px 27px;
 				background-position: -21px 0px;
 			}
+
 			.row:nth-child(6) {
 				.btn {
 					$height: 36px;
@@ -302,6 +295,84 @@ export default {
 		.left,
 		.right {
 			box-shadow: 7px 7px 5px rgba(0, 0, 0, 50%);
+		}
+	}
+}
+@media (max-width: 960px) {
+	.outer {
+		.container {
+			box-sizing: border-box;
+			padding: 25px 0 0 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+			text-align: center;
+			.left {
+				margin: auto;
+				width: 90%;
+				height: 58%;
+				.row {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					h2 {
+						font-size: 24px;
+						font-weight: 200;
+					}
+				}
+				.row:nth-child(2),
+				.row:nth-child(3),
+				.row:nth-child(4),
+				.row:nth-child(5) {
+					position: relative;
+					margin: 0 0 15px;
+					border-radius: 5px;
+					width: 230px;
+					height: 32px;
+				}
+				.row:nth-child(2)::after {
+					width: 23px;
+					height: 27px;
+					background-size: 37px 27px;
+					background-position: -21px -2px;
+				}
+				.row:nth-child(3)::after {
+					width: 26px;
+					height: 28px;
+					background-size: 34px 25px;
+					background-position: -15px -1px;
+				}
+				.row:nth-child(4)::after,
+				.row:nth-child(5)::after {
+					width: 26px;
+					height: 28px;
+					background-size: 34px 27px;
+					background-position: -15px -2px;
+				}
+
+				.row:nth-child(6) {
+					.btn {
+						$height: 32px;
+						line-height: $height;
+						height: $height;
+					}
+					.btn:focus {
+						outline: unset;
+						color: #c9cbff;
+						border: 1px solid #c9cbff;
+					}
+				}
+			}
+			.right {
+				position: relative;
+				margin: auto;
+				width: 90%;
+				height: 37%;
+				h1 {
+					font-size: 40px;
+					padding: 54px 0 87px 0;
+				}
+			}
 		}
 	}
 }

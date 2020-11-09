@@ -198,4 +198,59 @@ export default {
 		}
 	}
 }
+@media (max-width: 960px) {
+	.outer {
+		display: block;
+		.container {
+			height: calc(100vh - 57px);
+			.content {
+				width: 90%;
+				height: 90%;
+				.top {
+					.search {
+						width: 60%;
+						padding: 0;
+						height: 26px;
+						text-align: center;
+						input {
+							width: 90%;
+						}
+						.btn {
+							padding: 5px;
+							border-radius: 5px;
+							right: -55px;
+						}
+						.notFind {
+							right: 48px;
+							font-size: 20px;
+						}
+						.newFriesn {
+							font-size: 20px;
+						}
+					}
+				}
+				.btm {
+					flex-flow: column;
+					align-items: center;
+					.user {
+						width: 100%;
+						.avatar {
+							width: 90px;
+							height: 90px;
+						}
+						.name {
+							padding: 26px 0 26px;
+							font-weight: 200;
+						}
+					}
+					.state {
+						margin: 0;
+						width: 70%;
+						height: 21%;
+					}
+				}
+			}
+		}
+	}
+}
 </style>

@@ -54,8 +54,8 @@ export default {
 				if (!res.data.success) {
 					this.$router.push({ path: "/Login" });
 				}
-        this.$store.commit("updateUserName", this.name);
-        this.name = null
+				this.$store.commit("updateUserName", this.name);
+				this.name = null;
 			});
 		},
 		changeState() {
@@ -63,8 +63,8 @@ export default {
 				if (!res.data.success) {
 					this.$router.push({ path: "/Login" });
 				}
-        this.$store.commit("updateUserState", this.state);
-        this.state = null
+				this.$store.commit("updateUserState", this.state);
+				this.state = null;
 			});
 		},
 	},
@@ -156,6 +156,51 @@ export default {
 						border-radius: 5px;
 						font-size: 16px;
 						right: -65px;
+					}
+				}
+			}
+		}
+	}
+}
+@media (max-width: 960px) {
+	.outer {
+		display: block;
+		.container {
+			height: calc(100vh - 57px);
+			.content {
+				width: 90%;
+				height: 90%;
+				.top {
+					flex-flow: column;
+					align-items: center;
+					.user {
+						width: 100%;
+						.avatar {
+							width: 90px;
+							height: 90px;
+						}
+						.name {
+							padding: 26px 0 26px;
+							font-weight: 200;
+						}
+					}
+					.state {
+						margin: 0;
+						width: 70%;
+						height: 21%;
+					}
+				}
+				.btm {
+					.change {
+						height: 26px;
+						input {
+							width: 90%;
+						}
+						.btn {
+							padding: 5px;
+							border-radius: 5px;
+							right: -55px;
+						}
 					}
 				}
 			}

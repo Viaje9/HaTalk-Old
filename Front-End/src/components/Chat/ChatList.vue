@@ -2,14 +2,19 @@
 	<div class="outer">
 		<menu-component></menu-component>
 		<div class="container">
-			<router-link class="content" :to="'/Chat/'+item.account" v-for="item in firends" :key="item.account">
+			<router-link
+				class="content"
+				:to="'/Chat/' + item.account"
+				v-for="item in firends"
+				:key="item.account"
+			>
 				<div class="user">
 					<div class="avatar">
 						<img :src="avatarImg" alt="" />
 					</div>
-					<div class="name">{{item.name}}</div>
+					<div class="name">{{ item.name }}</div>
 				</div>
-				<div class="state">{{item.state}}</div>
+				<div class="state">{{ item.state }}</div>
 			</router-link>
 		</div>
 	</div>
@@ -36,6 +41,9 @@ export default {
 	$color1: #0b2239;
 	$color2: #ffffff;
 	display: flex;
+	.container::-webkit-scrollbar {
+		display: none;
+	}
 	.container {
 		max-height: 100vh;
 		overflow-x: hidden;
@@ -84,6 +92,42 @@ export default {
 				font-size: 18px;
 				color: $color2;
 				font-weight: 300;
+			}
+		}
+	}
+}
+@media (max-width: 960px) {
+	.outer {
+		display: block;
+		.container {
+			width: 100%;
+			min-height: calc(100vh - 57px);
+			max-height: calc(100vh - 57px);
+			padding: 8px 0 0 0;
+			flex-flow: column;
+			align-items: center;
+			.content {
+				margin: 0 0 8px;
+				width: 90%;
+				height: 70px;
+				box-shadow: 3px 4px 5px rgba(0, 0, 0, 50%);
+				.user {
+					flex-flow: unset;
+					justify-content: space-around;
+					.avatar {
+						padding: 0 0 0;
+						width: 40px;
+						height: 40px;
+					}
+					.name {
+						padding: 0 15px 0 0;
+					}
+				}
+				.state {
+					padding: 0 0 0 5px;
+					font-size: 13px;
+					justify-content: flex-start;
+				}
 			}
 		}
 	}
