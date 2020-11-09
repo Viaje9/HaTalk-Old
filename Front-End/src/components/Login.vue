@@ -46,6 +46,8 @@ export default {
 				.then((res) => {
 					if (res.data.success) {
 						this.$store.commit("setUser", "login");
+						this.$socket.close();
+						this.$socket.open();
 					} else {
 						this.loginErr = true;
 					}
@@ -206,7 +208,7 @@ export default {
 @media (max-width: 960px) {
 	.outer {
 		.container {
-      box-sizing: border-box;
+			box-sizing: border-box;
 			padding: 25px 0 0 0;
 			width: 100%;
 			height: 100%;
@@ -247,7 +249,7 @@ export default {
 					}
 					.row:nth-child(2),
 					.row:nth-child(3) {
-            margin: 0 0 50px;
+						margin: 0 0 50px;
 						width: 230px;
 						height: 32px;
 					}

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './route'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import store from './store';
+import store from './store'
 import VueSocketIO from 'vue-socket.io'
 
 
@@ -22,9 +22,3 @@ new Vue({
     router,
     render: h => h(App)
 }).$mount('#app')
-
-/**
- * route權限設定
- * node JWT
- * 如何紀錄使用者身分
- */

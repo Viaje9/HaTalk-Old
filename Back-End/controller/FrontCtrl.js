@@ -16,7 +16,6 @@ class IndexCtrl {
             if (err) response.json({ success: false })
             if (res !== null) {
                 bcrypt.compare(req.body.password, res.password, function (err, result) {
-                    console.log(result);
                     if (result) {
                         const token = jwt.sign({ _id: req.body.account }, key.jwt, { expiresIn: '14 day' })
                         response.cookie("Token", token, { httpOnly: true })

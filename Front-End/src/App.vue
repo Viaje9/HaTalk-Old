@@ -7,6 +7,7 @@
 <script>
 export default {
 	beforeCreate() {
+		
 		this.$store.commit("setUser");
 	},
 };
