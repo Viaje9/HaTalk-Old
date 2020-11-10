@@ -106,6 +106,8 @@ summary,
 time,
 mark,
 audio,
+input,
+button,
 video {
 	margin: 0;
 	padding: 0;

@@ -224,21 +224,21 @@ export default {
 							font-size: 24px;
 						}
 						input {
-							font-size: 13px;
+							font-size: 16px;
 						}
 						input::placeholder {
-							font-size: 13px;
+							font-size: 16px;
 							letter-spacing: 2px;
 						}
 						textarea:focus,
 						input:focus {
-							font-size: 13px;
+							font-size: 16px;
 							font-weight: 100;
 							color: #ffffff;
 						}
 						.btn {
 							$height: 32px;
-							font-size: 13px;
+							font-size: 16px;
 							line-height: $height;
 							width: 100px;
 							height: $height;

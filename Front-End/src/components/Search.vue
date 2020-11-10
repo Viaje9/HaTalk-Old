@@ -153,7 +153,7 @@ export default {
 				height: 50%;
 				display: flex;
 				background-color: $color1;
-				box-shadow: 7px 7px 5px rgba(0, 0, 0, 50%);
+				
 				.user {
 					width: 40%;
 					display: flex;
@@ -190,6 +190,7 @@ export default {
 				}
 			}
 			.find {
+				box-shadow: 7px 7px 5px rgba(0, 0, 0, 50%);
 				top: 50%;
 			}
 		}
@@ -207,15 +208,19 @@ export default {
 					.search {
 						width: 60%;
 						padding: 0;
-						height: 26px;
-						text-align: center;
+						height: 36px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
 						input {
+							margin: 0;
+							padding: 0;
 							width: 90%;
 						}
 						.btn {
-							padding: 5px;
+							padding: 10px;
 							border-radius: 5px;
-							right: -55px;
+							right: -60px;
 						}
 						.notFind {
 							right: 48px;

@@ -8,12 +8,12 @@
 						<div class="avatar">
 							<img :src="avatarImg" alt="" />
 						</div>
-						<div class="name">{{ userName ||123123123123}}</div>
+						<div class="name">{{ userName || 123123123123 }}</div>
 					</div>
 				</div>
 				<div class="btm">
 					<div class="change">
-						<input type="text" v-model="name" placeholder="更新暱稱" />
+						<input type="text" v-model="name" maxlength="10" placeholder="更新暱稱" />
 						<button class="btn" @click="changeName">更新</button>
 					</div>
 				</div>
@@ -28,13 +28,13 @@ export default {
 	data() {
 		return {
 			avatarImg: avatarImg,
-			name: null
+			name: null,
 		};
 	},
 	computed: {
 		userName() {
 			return this.$store.state.name;
-		}
+		},
 	},
 	methods: {
 		changeName() {
@@ -45,15 +45,15 @@ export default {
 				this.$store.commit("updateUserName", this.name);
 				this.name = null;
 			});
-		}
+		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
+$color1: #0b2239;
+$color2: #ffffff;
 .outer {
-	$color1: #0b2239;
-	$color2: #ffffff;
 	display: flex;
 	.container {
 		display: flex;
@@ -134,11 +134,12 @@ export default {
 		.container {
 			height: calc(100vh - 57px);
 			.content {
-				width: 90%;
+				width: 80%;
 				height: 90%;
 				.top {
 					flex-flow: column;
 					align-items: center;
+					justify-content: center;
 					.user {
 						width: 100%;
 						.avatar {
@@ -152,15 +153,29 @@ export default {
 					}
 				}
 				.btm {
+					flex-flow: unset;
 					.change {
-						height: 26px;
+						height: unset;
+						flex-flow: column;
+						margin: 0;
+						position: unset;
+						border: unset;
 						input {
+							border-radius: 5px;
+							border: 1px solid $color1;
+							top: 14px;
 							width: 90%;
+							padding: 5px 16px;
+							margin: 0 0 24px;
+						}
+						input::placeholder {
+							font-size: 18px;
 						}
 						.btn {
-							padding: 5px;
-							border-radius: 5px;
-							right: -55px;
+							position: unset;
+							padding: 18px;
+							line-height: 0;
+							right: unset;
 						}
 					}
 				}

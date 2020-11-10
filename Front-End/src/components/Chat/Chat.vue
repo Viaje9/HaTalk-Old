@@ -176,6 +176,7 @@ export default {
 				height: 50px;
 				display: flex;
 				input {
+					border-radius: 0;
 					padding: 0 0 0 50px;
 					border-top: 1px solid $color2;
 					flex: 1;
