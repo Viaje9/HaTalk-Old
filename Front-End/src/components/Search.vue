@@ -25,9 +25,6 @@
 						</div>
 						<div class="name">{{ user.name }}</div>
 					</div>
-					<div class="state">
-						{{ user.state }}
-					</div>
 				</div>
 			</div>
 		</div>
@@ -43,8 +40,7 @@ export default {
 			account: null,
 			user: {
 				account: null,
-				name: null,
-				state: null,
+				name: null
 			},
 			notFind: null,
 			newFriesn: null,
@@ -76,6 +72,7 @@ export default {
 				.then((res) => {
 					//需要判斷重複好友
 					if (res.data.success) {
+						this.$store.commit("setUser", "newFriesn");
 						this.newFriesn = true;
 					}
 				});
@@ -242,11 +239,6 @@ export default {
 							padding: 26px 0 26px;
 							font-weight: 200;
 						}
-					}
-					.state {
-						margin: 0;
-						width: 70%;
-						height: 21%;
 					}
 				}
 			}

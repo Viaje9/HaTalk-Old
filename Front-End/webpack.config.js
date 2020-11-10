@@ -2,6 +2,9 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+    devServer: {
+        host: '0.0.0.0',
+    },
     entry: './src/main.js',
     output: {
         filename: 'index.bundle.js',

@@ -14,7 +14,6 @@
 					</div>
 					<div class="name">{{ item.name }}</div>
 				</div>
-				<div class="state">{{ item.state }}</div>
 			</router-link>
 		</div>
 	</div>
@@ -60,12 +59,11 @@ export default {
 			display: flex;
 			box-shadow: 7px 7px 5px rgba(0, 0, 0, 50%);
 			.user {
-				width: 40%;
+				width: 100%;
 				display: flex;
-				flex-flow: column;
 				align-items: center;
 				.avatar {
-					padding: 35px 0 0;
+					padding: 0 15px 0;
 					width: 80px;
 					height: 80px;
 					img {
@@ -74,24 +72,10 @@ export default {
 					}
 				}
 				.name {
-					padding: 35px 0 0;
 					font-size: 20px;
 					color: $color2;
 					font-weight: 300;
 				}
-			}
-			.state {
-				box-sizing: border-box;
-				border: 1px solid $color2;
-				border-radius: 10px;
-				margin: 15px 15px 15px 0;
-				width: 60%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-size: 18px;
-				color: $color2;
-				font-weight: 300;
 			}
 		}
 	}
@@ -112,21 +96,10 @@ export default {
 				height: 70px;
 				box-shadow: 3px 4px 5px rgba(0, 0, 0, 50%);
 				.user {
-					flex-flow: unset;
-					justify-content: space-around;
 					.avatar {
-						padding: 0 0 0;
 						width: 40px;
 						height: 40px;
 					}
-					.name {
-						padding: 0 15px 0 0;
-					}
-				}
-				.state {
-					padding: 0 0 0 5px;
-					font-size: 13px;
-					justify-content: flex-start;
 				}
 			}
 		}

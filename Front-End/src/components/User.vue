@@ -8,21 +8,13 @@
 						<div class="avatar">
 							<img :src="avatarImg" alt="" />
 						</div>
-						<div class="name">{{ userName }}</div>
-					</div>
-					<div class="state">
-						{{ userState }}
+						<div class="name">{{ userName ||123123123123}}</div>
 					</div>
 				</div>
 				<div class="btm">
 					<div class="change">
 						<input type="text" v-model="name" placeholder="更新暱稱" />
 						<button class="btn" @click="changeName">更新</button>
-					</div>
-
-					<div class="change">
-						<input type="text" v-model="state" placeholder="更新狀態" />
-						<button class="btn" @click="changeState">更新</button>
 					</div>
 				</div>
 			</div>
@@ -36,17 +28,13 @@ export default {
 	data() {
 		return {
 			avatarImg: avatarImg,
-			name: null,
-			state: null,
+			name: null
 		};
 	},
 	computed: {
 		userName() {
 			return this.$store.state.name;
-		},
-		userState() {
-			return this.$store.state.state;
-		},
+		}
 	},
 	methods: {
 		changeName() {
@@ -57,16 +45,7 @@ export default {
 				this.$store.commit("updateUserName", this.name);
 				this.name = null;
 			});
-		},
-		changeState() {
-			this.axios.put("/UpdateUserState", { state: this.state }).then((res) => {
-				if (!res.data.success) {
-					this.$router.push({ path: "/Login" });
-				}
-				this.$store.commit("updateUserState", this.state);
-				this.state = null;
-			});
-		},
+		}
 	},
 };
 </script>
@@ -111,19 +90,6 @@ export default {
 						color: $color2;
 						font-weight: 300;
 					}
-				}
-				.state {
-					box-sizing: border-box;
-					border: 1px solid $color2;
-					border-radius: 10px;
-					margin: 15px 15px 15px 0;
-					width: 60%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					font-size: 18px;
-					color: $color2;
-					font-weight: 300;
 				}
 			}
 			.btm {
@@ -183,11 +149,6 @@ export default {
 							padding: 26px 0 26px;
 							font-weight: 200;
 						}
-					}
-					.state {
-						margin: 0;
-						width: 70%;
-						height: 21%;
 					}
 				}
 				.btm {

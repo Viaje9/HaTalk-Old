@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from './store'
 
 import HomeComponent from './components/Home.vue'
 import LoginComponent from './components/Login.vue'
@@ -55,17 +56,12 @@ router.beforeEach((to, from, next) => {
       next({
         path: '/Chat',
       })
-    }
-    if (from.matched.length === 0 || router.app.$store.state.account) {
-      /**
-       * 如果是剛開啟網頁
-       * 或是找到account
-       */
-      next()
-    } else {
+    } else if (from.matched.length !== 0 && !store.getters.userData) {
       next({
-        path: '/login',
+        path: '/Login',
       })
+    } else {
+      next()
     }
   } else {
     next() // 确保一定要调用 next()

@@ -57,8 +57,10 @@ export default {
 	},
 	methods: {
 		send() {
-			this.$socket.emit("chat message", this.msg);
-			this.msg = null;
+			if (this.msg) {
+				this.$socket.emit("chat message", this.msg);
+				this.msg = null;
+			}
 		},
 	},
 	updated() {
@@ -137,11 +139,11 @@ export default {
 					}
 					.text::after {
 						position: absolute;
-						top: -10px;
+						top: -7px;
 						left: -37px;
 						width: 41px;
 						height: 10px;
-						background-color: $color1;
+						background-color: rgba(0, 0, 0, 0%);
 						content: "";
 						border-right: 0.5em solid $color2;
 						border-top-right-radius: 1em 0.5em;
@@ -202,8 +204,11 @@ export default {
 			width: 100%;
 			height: calc(100% - 57px);
 			.content {
-				width: 97%;
-				height: 97%;
+				position: relative;
+				border-top: 1px solid #ffffff;
+				z-index: 999;
+				width: 100%;
+				height: 100%;
 				#text_area {
 					height: calc(100% - 70px);
 					padding: 10px;
@@ -240,14 +245,17 @@ export default {
 					input {
 						width: 80%;
 						box-sizing: border-box;
-						padding: 0 0 0 14px;
+						padding: 0 0 0 10%;
 						font-size: 16px;
 						font-weight: 100;
 					}
 					.btn {
 						width: 20%;
-						margin: 8px 0 0;
+						margin: 0 9px 0;
 						height: 70%;
+					}
+					.btn:focus {
+						outline: unset;
 					}
 				}
 			}

@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
     });
 });
 
-http.listen(process.env.PORT || 8080, () => {
+http.listen(process.env.PORT || 8080, '192.168.1.5',() => {
     console.log('listening on *:', process.env.PORT || 8080);
 });
 

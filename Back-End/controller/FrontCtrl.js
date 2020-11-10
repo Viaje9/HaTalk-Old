@@ -55,9 +55,9 @@ class IndexCtrl {
         }
     }
 
-    getUser(req, res) {
+    async getUser(req, res) {
         //取得好友名單就好
-        User.findOne({ account: req.account }).populate('friends').exec(function (err, result) {
+        await User.findOne({ account: req.account }).populate('friends').exec(function (err, result) {
             const data = {
                 success: true,
                 name: result.name,
@@ -83,10 +83,6 @@ class IndexCtrl {
     }
 
     searchUser(req, res) {
-        /**
-         * 可能會有找不到或是其他err狀況
-         * 找到自己
-         */
         User.findOne({ account: req.query.account }, "account name state", (err, result) => {
             if (err || result === null) res.send({ success: false })
             else {
@@ -100,23 +96,22 @@ class IndexCtrl {
         })
     }
 
-    addFriend(req, res) {
-        User.findOne({ account: req.account }).populate('friends').exec(function (err, result) {
+    async addFriend(req, res) {
+        await User.findOne({ account: req.account }).populate('friends').exec(async (err, result) =>{
             const repeat = result.friends.filter(e => e.account === req.body.account)
             if (repeat.length == 0) {
                 if (req.account !== req.body.account) {
-                    console.log("check account");
                     const newChat = new Chat()
                     creatFriend(req.account, req.body.account, newChat._id)
                     creatFriend(req.body.account, req.account, newChat._id)
-                    newChat.save()
+                    await newChat.save()
                     res.send({ success: true })
                 } else res.send({ success: false })
             } else res.send({ success: false })
         })
 
-        function creatFriend(user, friend, chatId) {
-            User.findOne({ account: user }, (err, userRes) => {
+        async function creatFriend(user, friend, chatId) {
+            await User.findOne({ account: user }, async (err, userRes) => {
                 const data = {
                     friends: userRes._id,
                     chatList: {
@@ -124,17 +119,10 @@ class IndexCtrl {
                         chat: chatId
                     }
                 }
-                User.updateOne({ account: friend }, { $push: data }).exec()
+                await User.updateOne({ account: friend }, { $push: data }).exec()
             })
         }
     }
-
-    // getFriend(req, res) {
-    //     User.findOne({ account: req.account }).populate('friends').exec(function (err, result) {
-    //         const list = result.friends.map(e => { return { account: e.account, name: e.name, state: e.state } })
-    //         res.send({ success: true, list: list })
-    //     })
-    // }
 
     async getMsg(req, response) {
         const room = await User.findOne({ account: req.account }, { chatList: { $elemMatch: { friend: req.query.account } } })
@@ -143,9 +131,6 @@ class IndexCtrl {
         })
     }
 
-    test(req, res) {
-        res.send({ success: true })
-    }
 }
 
 module.exports = new IndexCtrl();
