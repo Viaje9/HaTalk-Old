@@ -15,17 +15,6 @@
 					<div class="name">{{ item.name }}</div>
 				</div>
 			</router-link>
-			<router-link
-				class="content"
-				to="/Chat/test"
-			>
-				<div class="user">
-					<div class="avatar">
-						<img :src="avatarImg" alt="" />
-					</div>
-					<div class="name">123123</div>
-				</div>
-			</router-link>
 		</div>
 	</div>
 </template>

@@ -29,8 +29,11 @@ const store = new Vuex.Store({
     },
     getters: {
         getFriend: (state) => (account) => {
+            const friend = state.friends.filter(e => e.account === account)
             if (state.friends.length !== 0)
-                return state.friends.filter(e => e.account === account)[0].name
+                return friend[0].name
+            if (friend.length === 0) 
+                route.push({ path: "/Chat" }).catch(() => { });
         },
 
         userData: (state) => {
