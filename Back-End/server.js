@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken')
+const cookie = require('cookie');
 const cookieParser = require('cookie-parser')
 const index = require('./routes/index');
 const path = require('path');
@@ -31,18 +32,18 @@ io.on('connection', (socket) => {
     });
 
     socket.on('bind room', async (msg) => {
-        const token = socket.handshake.headers.cookie.split(";")
-            .find(e => e.split("=")[0] === "Token")
-            .split("=")[1]
-        socket.account = jwt.verify(token, key.jwt)._id
-        const room = await User.findOne({ account: socket.account }, { chatList: { $elemMatch: { friend: msg } } })
-        socket.room = room.chatList[0].chat
-        socket.friend = msg
-        socket.join(socket.room)
+        const cookies = cookie.parse(socket.handshake.headers.cookie)
+        if (cookies.Token) {
+            socket.account = jwt.verify(cookies.Token, key.jwt)._id
+            const room = await User.findOne({ account: socket.account }, { chatList: { $elemMatch: { friend: msg } } })
+            socket.room = room.chatList[0].chat
+            socket.friend = msg
+            socket.join(socket.room)
+        }
     });
 });
 
-http.listen(process.env.PORT || 8080, '192.168.1.5',() => {
+http.listen(process.env.PORT || 8080, () => {
     console.log('listening on *:', process.env.PORT || 8080);
 });
 

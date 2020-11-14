@@ -97,7 +97,7 @@ class IndexCtrl {
     }
 
     async addFriend(req, res) {
-        await User.findOne({ account: req.account }).populate('friends').exec(async (err, result) =>{
+        await User.findOne({ account: req.account }).populate('friends').exec(async (err, result) => {
             const repeat = result.friends.filter(e => e.account === req.body.account)
             if (repeat.length == 0) {
                 if (req.account !== req.body.account) {

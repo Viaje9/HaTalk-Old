@@ -46,8 +46,6 @@ export default {
 				.then((res) => {
 					if (res.data.success) {
 						this.$store.commit("setUser", "login");
-						this.$socket.close();
-						this.$socket.open();
 					} else {
 						this.loginErr = true;
 					}

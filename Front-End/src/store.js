@@ -19,13 +19,15 @@ const store = new Vuex.Store({
                 state.name = data.name
                 state.account = data.account
                 state.friends = data.friends
+                this._vm.$socket.close()
+                this._vm.$socket.open()
                 if (!data.success) route.push({ path: "/Login" }).catch(() => { });
                 else if (from === "login" || from === "register") route.push({ path: "/" }).catch(() => { });
             });
         },
         updateUserName(state, data) {
             state.name = data
-        }
+        }  
     },
     getters: {
         getFriend: (state) => (account) => {

@@ -14,7 +14,7 @@ Vue.component('menu-component', MenuComponent)
 // 套件
 Vue.use(VueAxios, axios)
 Vue.use(new VueSocketIO({
-    connection:'/'
+    connection: '/'
 }))
 
 new Vue({

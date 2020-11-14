@@ -43,6 +43,7 @@ export default {
 		},
 	},
 	mounted() {
+		console.log(this);
 		const account = this.$router.currentRoute.params.id;
 		this.friend = this.$store.getters.getFriend(
 			this.$router.currentRoute.params.id
