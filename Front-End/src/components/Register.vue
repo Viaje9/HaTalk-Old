@@ -83,9 +83,7 @@
 </template>
 
 <script>
-/**
- * 多一隻接口在account change的時候即時檢查帳號有沒有重複
- */
+
 export default {
 	data() {
 		return {

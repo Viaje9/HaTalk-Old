@@ -58,7 +58,7 @@ router.beforeEach((to, from, next) => {
       })
     } else if (from.matched.length !== 0 && !store.getters.userData) {
       next({
-        path: '/Login',
+        // path: '/Login',
       })
     } else {
       next()

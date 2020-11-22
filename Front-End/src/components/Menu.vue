@@ -106,6 +106,39 @@ export default {
 		font-size: 13px;
 	}
 }
+@media (max-width: 1366px) {
+	.outer {
+		width: 300px;
+		.head {
+			height: 40%;
+			h2 {
+				padding: 30px 0 0;
+				font-size: 30px;
+			}
+			.avatar {
+				padding: 20px 0 0;
+				width: 90px;
+				height: 90px;
+			}
+			.name {
+				padding: 20px 0 0;
+				font-size: 24px;
+				font-weight: 300;
+			}
+		}
+		.body {
+			.btn {
+				margin: 30px 0 0;
+				width: 45px;
+				height: 45px;
+				background-size: 90px 45px;
+			}
+		}
+		.footer {
+			padding: 10% 0 0;
+		}
+	}
+}
 @media (max-width: 960px) {
 	.outer {
 		width: 100%;
@@ -126,7 +159,7 @@ export default {
 				background-position: 0px 0px;
 			}
 		}
-		.footer{
+		.footer {
 			display: none;
 		}
 	}

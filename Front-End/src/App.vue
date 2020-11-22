@@ -6,7 +6,7 @@
 
 <script>
 export default {
-	beforeCreate() {
+	mounted() {
 		this.$store.commit("setUser");
 	},
 };
