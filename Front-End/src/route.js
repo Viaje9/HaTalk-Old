@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from './store'
 
-import HomeComponent from './components/Home.vue'
 import LoginComponent from './components/Login.vue'
 import RegisterComponent from './components/Register.vue'
 import UserComponent from './components/User.vue'
@@ -13,10 +12,11 @@ import ChatComponent from './components/Chat/Chat.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: "/",
-      component: HomeComponent,
+      component: ChatListComponent,
       meta: { requiresAuth: true }
     },
     {

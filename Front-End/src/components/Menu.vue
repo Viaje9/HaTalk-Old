@@ -14,7 +14,7 @@
 			<router-link class="btn" to="/"></router-link>
 		</div>
 		<div class="footer">
-			<span>Copyright © 2020 Viaje9 Design.</span>
+			<span>Copyright © 2021 Viaje9 Design.</span>
 		</div>
 	</div>
 </template>  

@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken')
+const history = require('connect-history-api-fallback');
 const cookie = require('cookie');
 const cookieParser = require('cookie-parser')
 const index = require('./routes/index');
@@ -14,6 +15,7 @@ const User = require('./model/User')
 const Chat = require('./model/Chat')
 
 mongoose.connect(key.db, { useNewUrlParser: true, useUnifiedTopology: true });
+app.use(history())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
@@ -32,6 +34,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('bind room', async (msg) => {
+        console.log('test');
         const cookies = cookie.parse(socket.handshake.headers.cookie)
         if (cookies.Token) {
             socket.account = jwt.verify(cookies.Token, key.jwt)._id
